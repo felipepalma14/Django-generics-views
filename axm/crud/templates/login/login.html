@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+  {% load bootstrap3 %}
+
+  {% block title %}
+    <title>Login</title>
+  {% endblock title %}
+  
+  {% block content %}
+
+  <h1>Login</h1>
+
+  <script language="Javascript" type="text/javascript">
+  function Validar(objForm)
+  {
+    if (objForm.username.value != "" && objForm.password.value != "")
+      return true;
+      else {
+        alert("Preencha corretamente todos os campos.");
+        objForm.username.focus();
+        return false;
+      }
+    }
+  </script>
+</head>
+ 
+<body>
+<center>
+<form action="." name="login" id="frmLogin" method="post" onsubmit="return Validar(this)">
+{% csrf_token %} 
+<div id="divLogin" align="left">
+  <br />Usuario:{{form.username}}
+  <br />Senha:{{form.password}}
+  <input type="hidden" name="next" value="{{ next }}" />
+  <br /><br />
+  <input type="submit" name="btOk" value="Ok" />
+</div>
+</form>
+
+{% if form.errors %}
+
+<div align="center" style="padding-top:50px;font-size:16px;color:red;">
+  Erro: Usuario ou senha incorretos.
+</div>
+{% endif %}
+ 
+</center>
+</body>
+{% endblock content %}

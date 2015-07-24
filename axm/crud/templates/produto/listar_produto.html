@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>Usuarios Cadastrados</title>
+{% endblock title %}
+
+{% block content %}
+    <!-- search form -->
+    <form class="navbar-form navbar-right" action="." method="get">
+        <input id="search_box" name="search_box" type="text" placeholder="Search..." class="form-control">
+        <button type="submit" class="btn btn-success form-control"><span class="glyphicon glyphicon-search"></span></button>
+    </form>
+
+    <h1>Produtos</h1>
+    {% for produto in all_produtos %}
+        <ul class="list-group">
+          <li class="list-group-item">
+            <!--<span class="badge">{{ usuario.get_members_count }}</span>-->
+             Produto: <i>{{ produto.nome }}</i><br>
+            <a href="{% url  "update_produto" produto.id%}">Atualizar</a>
+            <a href="{% url "deletar_produto" produto.id %}">Deletar</a>
+            
+          </li>
+          {% empty %}
+            <li>Sem itens na listagens</li>
+        </ul>
+    {% endfor %}
+{% endblock content %}

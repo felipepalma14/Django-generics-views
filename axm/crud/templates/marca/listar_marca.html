@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>Marcas Cadastradas</title>
+{% endblock title %}
+
+{% block content %}
+    <!-- search form -->
+    <form class="navbar-form navbar-right" action="." method="get">
+        <input id="search_box" name="search_box" type="text" placeholder="Search..." class="form-control">
+        <button type="submit" class="btn btn-success form-control"><span class="glyphicon glyphicon-search"></span></button>
+    </form>
+
+    <h1>Marca</h1>
+    {% for marca in all_marcas %}
+        <ul class="list-group">
+          <li class="list-group-item">
+             Marca: <i>{{ marca.nome }}</i><br>
+            <a href="{% url  "update_marca" marca.id%}">Atualizar</a>
+            <a href="{% url  "deletar_marca" marca.id %}">Deletar</a>
+            
+          </li>
+          {% empty %}
+            <li>Sem itens na listagens</li>
+        </ul>
+    {% endfor %}
+{% endblock content %}
